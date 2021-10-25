@@ -1,0 +1,15 @@
+name: "my-website"
+output_dir: "docs"
+navbar:
+  title: "Bo Yang Fall 2021 ANLY 503 A5 Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Plotly"
+      href: plotly.html
+    - text: "Altair"
+      href: altair.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate

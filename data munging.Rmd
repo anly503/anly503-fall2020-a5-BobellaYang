@@ -1,0 +1,212 @@
+---
+title: "A5 Data Munging"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readr)
+library(lubridate)
+library(knitr)
+library(tidyr)
+library(tibble)
+library(reshape2)
+library(glmnet)
+library(collapsibleTree)
+library(dygraphs)
+library(plotly)
+library(heatmaply)
+```
+
+
+
+```{r}
+mydir = "04sm"
+myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
+household4 <- data.frame(allpower = numeric(), 
+                 date = character(), 
+                 stringsAsFactors=FALSE) 
+for (i in myfiles) {
+  a <- read.csv(i, header = FALSE)
+  a <- a[1]
+  a <- subset(a, a[1] != -1)
+  num <- mean(a[,1])
+  household4 <- rbind(household4, setNames(as.list(c(num, substr(i, 6,15))), names(household4)))
+}
+household4$household <- "4"
+```
+
+
+
+```{r}
+mydir = "05sm"
+myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
+household5 <- data.frame(allpower = numeric(), 
+                 date = character(), 
+                 stringsAsFactors=FALSE) 
+for (i in myfiles) {
+  a <- read.csv(i, header = FALSE)
+  a <- a[1]
+  a <- subset(a, a[1] != -1)
+  num <- mean(a[,1])
+  household5 <- rbind(household5, setNames(as.list(c(num, substr(i, 6,15))), names(household5)))
+}
+household5$household <- "5"
+```
+
+
+
+```{r}
+mydir = "06sm"
+myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
+household6 <- data.frame(allpower = numeric(), 
+                 date = character(), 
+                 stringsAsFactors=FALSE) 
+for (i in myfiles) {
+  a <- read.csv(i, header = FALSE)
+  a <- a[1]
+  a <- subset(a, a[1] != -1)
+  num <- mean(a[,1])
+  household6 <- rbind(household6, setNames(as.list(c(num, substr(i, 6,15))), names(household6)))
+}
+household6$household <- "6"
+
+```
+
+
+
+```{r}
+allhousehold <- rbind(household4, household5, household6)
+allhousehold$allpower <- as.numeric(allhousehold$allpower)
+allhousehold$allpower <- round(allhousehold$allpower, digits = 2)
+write.csv(allhousehold, "finalhouseholdsm.csv", row.names = FALSE)
+```
+
+
+
+
+
+```{r}
+main_dir <- "04plug"
+dir_list <- list.dirs(main_dir,recursive = FALSE) 
+householdplug4 <- data.frame(measurement = numeric(), 
+                 plug = character(), 
+                 stringsAsFactors=FALSE)
+for (i in dir_list) {
+  myfiles = list.files(path = i, pattern="*.csv", full.names=TRUE)
+  name = substring(i, 8)
+  values <- 0
+  for (j in myfiles) {
+    a <- read.csv(j, header = FALSE)
+    a <- subset(a, a[1] != -1)
+    num <- mean(a[,1])
+    values <- values + num
+  }
+  householdplug4 <- rbind(householdplug4, setNames(as.list(c(values, name)), names(householdplug4)))
+}
+householdplug4$household <- "4"
+```
+
+
+```{r}
+main_dir <- "05plug"
+dir_list <- list.dirs(main_dir,recursive = FALSE) 
+householdplug5 <- data.frame(measurement = numeric(), 
+                 plug = character(), 
+                 stringsAsFactors=FALSE)
+for (i in dir_list) {
+  myfiles = list.files(path = i, pattern="*.csv", full.names=TRUE)
+  name = substring(i, 8)
+  values <- 0
+  for (j in myfiles) {
+    a <- read.csv(j, header = FALSE)
+    a <- subset(a, a[1] != -1)
+    num <- mean(a[,1])
+    values <- values + num
+  }
+  householdplug5 <- rbind(householdplug5, setNames(as.list(c(values, name)), names(householdplug5)))
+}
+householdplug5$household <- "5"
+```
+
+
+
+```{r}
+main_dir <- "06plug"
+dir_list <- list.dirs(main_dir,recursive = FALSE) 
+householdplug6 <- data.frame(measurement = numeric(), 
+                 plug = character(), 
+                 stringsAsFactors=FALSE)
+for (i in dir_list) {
+  myfiles = list.files(path = i, pattern="*.csv", full.names=TRUE)
+  name = substring(i, 8)
+  values <- 0
+  for (j in myfiles) {
+    a <- read.csv(j, header = FALSE)
+    a <- subset(a, a[1] != -1)
+    num <- mean(a[,1])
+    values <- values + num
+  }
+  householdplug6 <- rbind(householdplug6, setNames(as.list(c(values, name)), names(householdplug6)))
+}
+householdplug6$household <- "6"
+```
+
+
+```{r}
+allhouseholdplug <- rbind(householdplug4, householdplug5, householdplug6)
+allhouseholdplug$measurement <- as.numeric(allhouseholdplug$measurement)
+allhouseholdplug$measurement <- round(allhouseholdplug$measurement, digits = 0)
+write.csv(allhouseholdplug, "finalhouseholdplug.csv", row.names = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
