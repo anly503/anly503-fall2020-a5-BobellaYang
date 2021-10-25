@@ -1,0 +1,22 @@
+---
+title: "My Website"
+---
+
+Hello! This is the website that Bo created for ANLY 503 A5.
+
+Questions for each interactive graph:
+
+1. For plotly graph, I would like to answer "What's the difference between three households in their daily electricity usage?"
+
+2. For altair graph, my question is: "How different plug type affect each household's overall electricity usage?"
+
+Rationale for plotly: The dataset I created for plotly is the average daily electricity usage for all three households, the columns are all usage, household label, and date. Therefore, I decide to make a line plot with x-axis being date and y-axis being the actual value for electricity usage. Since a line plot serves for the purpose of change over time. Also, since I have the household column as a label, I will have three separated lines. Moreover, for x-axis, the natural plotly graph will make each possible date appear in the x-axis which will make it very crowed and complex. Therefore, I assign five tick values with dates that could separate the 8 months almost equally. In order to make people who visit my website to be more comfortable, I change the background color to light grey with the grid line color also be grey. Last but not least, there is a legend that specify which color of the line belongs to which household. 
+
+Therefore, to answer the question from the plot, we could see that clearly household 4 and 5 have a higher usage than household 6 during the 8 months. Household 4 and 5 have a increasing sign from the beginning but all of their usage started to decline after December 13 whereas household 6 is mostly stay in the same range (but keep in mind that there are almost 50 days that household 6 didn't have any data). The interactive of part of this plot has two main functions. Firstly, when user move their mouses around on the plot, it will show each datapoint's exact value which is the date and the value for electricity usage. Moreover, the users could also use their mouse to select an area on the plot, and it will zoom in that area selected so that user could discover the plot easily. 
+
+
+Rationale for altair: The dataset for altair is an aggregated file with rows that showing the overall electricity usage of one plug, the type of the plug, and the household label. Therefore, I choose to make a bar chart with labeled household and labeled plug type because bar chart is use to compare values between different groups. So in this plot, the things that we need to compare are household and plug type. Thus, the final bar plot that I created will have several chunks which will represent different plug types, and in each plug type chunk, I will have the usage for the household that use this type of plug. The interactive part of altair contain three parts. Firstly, I added tooltips for the plot. Whenever the user have their mouse over one bar on the plot, it will show a tooltip with the household, the plug type, and the overall usage value. Moreover, after I did the plot, the color for each type of plug is different so that it is easy for the user to distinguish between different type of plugs. However, if the user would like to focus on one specific type of plug, they could simply click on the type of plug on the graph, and all other type of plugs will become grey. Only the type selected will have color. Last but not least, since the value are relatively large in the plot, users could zoom in/out the bar chart with their touch pads (i.e. use two fingers to span in diagonal directions).
+
+In conclusion, to answer the question from the plot, we could see that common plug type among all households are only fridge and entertainments. Household 4 has the most usage for entertainment and household 5 has the most usage for fridge. All other usage for the rest of the plug type are pretty normal besides the type freezer. From the plot, we could see that only household 4 has the plug type freezer and the value is significantly large which is 33803. Therefore, we could pay attention to this household in the future and see why it has such a huge usage. 
+
+

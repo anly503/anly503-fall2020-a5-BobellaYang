@@ -47,3 +47,9 @@ fig
 ```{r}
 htmlwidgets::saveWidget(as_widget(fig), "plotly.html")
 ```
+
+
+```{r}
+knitr::purl("plotly.Rmd")
+
+```
